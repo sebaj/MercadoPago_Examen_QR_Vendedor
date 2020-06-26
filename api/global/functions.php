@@ -3,12 +3,12 @@
 // REVISA AQUÍ:
 // Agrega el access_token que se indica en el ejercicio así como el collector_id y el country_id
 
-$access_token="INGRESA AQUÍ EL ACCESS_TOKEN DEL USUARIO VENDEDOR";
-$collector_id="INGRESA AQUÍ EL COLLECTOR_ID DEL USUARIO VENDEDOR";
-$country_id="INGRESA AQUÍ EL COUNTRY_ID: MLA, MLM, MCO, MLC, MPE, MLU...";
+$access_token="APP_USR-7026946692817220-061822-8b7c9e20631faac22d9e4cfa92a37265-586728271";
+$collector_id="586728271";
+$country_id="MLA";
 
 // No tocar el integrator_id para el ejercicio
-$integrator_id_test="XXXXXXX"; 
+$integrator_id_test="XXXXXXX";
 
 $notificationJSON="";
 global $access_token,$collector_id,$notificationJSON,$country_id;
@@ -21,7 +21,7 @@ global $access_token,$collector_id,$notificationJSON,$country_id;
 // JSON: JSON en formato texto para enviar a la API.
 // En el caso que no aplique enviar JSON poner ""
 
-    
+
 function curl_call($method,$url,$json){
 	$integrator_id_test="";
 	$method = strtoupper($method);
@@ -30,11 +30,11 @@ function curl_call($method,$url,$json){
     if($method=="POST"){$post=1;}else{$post=0;};
     $options = array(
         CURLOPT_URL => $url,
-		CURLOPT_CUSTOMREQUEST=> $method, 
+		CURLOPT_CUSTOMREQUEST=> $method,
         CURLOPT_POST => $post,
         CURLOPT_HTTPHEADER => $headers,
         CURLOPT_POSTFIELDS => $json,
-    ); 
+    );
 
     curl_setopt_array($ch, $options);
     $response = curl_exec($ch);

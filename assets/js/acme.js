@@ -1,6 +1,6 @@
 /////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////
-// Exam: Mercado Pago inStore "QR Vendedor modelo Atendido" 
+// Exam: Mercado Pago inStore "QR Vendedor modelo Atendido"
 // June 5th, 2020
 // por Daniel Atik
 // daniel.atik@mercadopago.com
@@ -9,15 +9,15 @@
 
 // INSTRUCCIONES
 // -------------
-// Revisa los comentarios de este código y haz 
-// los cambios necesarios para que funcione 
+// Revisa los comentarios de este código y haz
+// los cambios necesarios para que funcione
 // correctamente todo el flujo.
 // Busca los comentarios que dicen: REVISA AQUÍ:
 
 
 
 $(document).ready(function() {
-	
+
 	// Define 10 minutos de timeout de una orden
 	var orderTimeout = 60 * 10;
 
@@ -32,14 +32,14 @@ $(document).ready(function() {
 
 	$('#exampleModal').on('show.bs.modal', function (event) {
 	  var button = $(event.relatedTarget); // Botón que gatilla la apertura modal
-	  var buttonOption = button.data('option'); 
+	  var buttonOption = button.data('option');
 	  var modal = $(this);
 	  var checkStatus;
 
 	  switch(buttonOption) {
 
 		  case "Cash": // Opción de pago con efectivo. Pero antes de usarlo piensa detenidamente...
-		    
+
 		    playSound("cash");
 		    modal.find(".modal-body").text("Are you sure you wanna pay with cash?");
 		    modal.find(".btn-primary").text("¡NO! 🤣");
@@ -53,7 +53,7 @@ $(document).ready(function() {
 		  	var external_reference = $('#external_reference').val(); // obtención del external_id de la página
 		  	modal.find(".modal-body").html("<center><div id='qr'></div><div id='countDown'></div><br/><div id='loading'></div><br/><div id='orderStatus'></div><div id='orderResponse'></div></center>");
 		    modal.find(".btn-primary").text("Cancel");
-		    
+
 
 		    // Muestra el código QR del punto de venta seleccionado
 
@@ -65,13 +65,13 @@ $(document).ready(function() {
 				// Si existe external_ID...
 
 				if(data.paging.total>0){
-			
+
 					// Muestra el código QR en pantalla:
 
 					$('#qr').html("<img with='350px' height='350px' src='"+data.results[0].qr.image+"'>");
-					
+
 					// REVISA AQUÍ:
-					// Agrega la URL notification_url 
+					// Agrega la URL notification_url
 					// para recibir las notificaciones en tu endpoint público.
 
 					var orderJSON ={"external_reference": external_reference,
@@ -103,14 +103,14 @@ $(document).ready(function() {
 							// Comprueba estado del pago vía Seach de Merchant_order
 
 							$.get("api/order/status/",{"external_reference":external_reference},function(data){
-								
+
 								console.log("Search de Merchant_order:");
 								console.log(data);
 
 								var elements = data.elements;
 								var totalElements = data.total;
-								
-								if(totalElements>0){ 
+
+								if(totalElements>0){
 
 									var orderStatus = elements[totalElements-1].status;
 									$('#orderStatus').text(orderStatus);
@@ -118,7 +118,7 @@ $(document).ready(function() {
 
 									try{
 										if(orderStatus=="opened" && elements[totalElements-1].payments[0].status=="rejected"){
-											// print 
+											// print
 											if($('#paymentStatusRejected').text()==""){
 												$('#paymentStatusRejected').text(JSON.stringify(data));
 											}
@@ -136,12 +136,12 @@ $(document).ready(function() {
 										$('#exampleModal').modal("hide");
 										$('#paymentStatusSearch').text(JSON.stringify(data));
 
-										
+
 									} // Fin if
 								}// Fin totalElements
 							});
 
-							
+
 							// Comprueba el estado del pago de la orden en servicio de recepción de notificaciones
 
 							$.get("api/notifications/get/",{},function(data){
@@ -149,14 +149,14 @@ $(document).ready(function() {
 								console.log(data);
 
 								if(data.status=="opened" && data.external_reference==external_reference){
-						 			
+
 							 		$('#orderStatus').text(data.status);
 							 		$('#loading').html("<img src='assets/img/ajax-loader.gif'>");
 								}
 
 								try{
 									if(orderStatus=="opened" && elements[totalElements-1].payments[0].status=="rejected"){
-										// print 
+										// print
 										if($('#paymentStatusRejected').text()==""){
 											$('#paymentStatusRejected').text(JSON.stringify(data));
 										}
@@ -164,7 +164,7 @@ $(document).ready(function() {
 								}catch(e){}
 
 								// Si la orden se cerró (pagó) se termina la búsqueda y cierra modal.
-								
+
 								if(data.status=="closed" && data.external_reference==external_reference){
 									if(cashSound){playSound("cash")};
 									cashSound=false;
@@ -176,21 +176,21 @@ $(document).ready(function() {
 							});
 
 
-							
+
 						}, 3000); // finaliza intervalo
 
 					}); // end get pos information
-				
+
 				}else{ // end if total
 
 					$('#qr').html("This External POS ID: 'EPOSID' does not exists<br/>for this Store ID: 'Store_id'".replace("EPOSID",external_id).replace("Store_id",store_id));
 
-				} 
+				}
 
 			});
 
 
-		    
+
 
 
 		    // Si el cajero cancela la orden
@@ -201,7 +201,7 @@ $(document).ready(function() {
 		    	clearInterval(checkStatus);
 
 				$.get("api/order/delete/",{"external_id":external_id},function(){
-					
+
 				});
 
 		    	$('#exampleModal').modal("hide");
@@ -214,7 +214,7 @@ $(document).ready(function() {
 
 
 	  modal.find('.modal-title').text('Pay with '+buttonOption);
-	  
+
 	});
 
 
@@ -260,9 +260,9 @@ $(document).ready(function() {
 	            timer = duration;
 	        }
     	}, 1000);
-	};// end starttimer 
+	};// end starttimer
 
-   
+
 
 ///////////////////////////////////////////////////////////////////////////
 // Estas funciones muestran los selectores de país, región, comuna, barrio, ciudad
@@ -277,7 +277,7 @@ $(document).ready(function() {
 			}
 		});
 
-	}; // 
+	}; //
 
 	$("#country").change(function(){
 		var selectedCountry = $("#country option:selected").val();
@@ -325,7 +325,27 @@ $(document).ready(function() {
 		// REVISA AQUÍ:
 		// Modifica el storeJSON con la estructura necesaria para crear una Store correctamente.
 
-		var storeJSON = {}
+		var storeJSON = {
+				"external_id": externalStoreID,
+				"name": storeName,
+				"location": {
+					"city_name": city,
+					"latitude": latitude,
+					"longitude": longitude,
+					"reference": "",
+					"state_name": state,
+					"street_name": streetName,
+					"street_number": streetNumber
+				},
+				"business_hours": {
+					"monday": [{"open": "08:00","close": "13:00"},{"open": "15:00","close": "18:00"}],
+					"tuesday": [{"open": "08:00","close":"18:00"}],
+					"wednesday": [{"open": "08:00","close": "18:00"}],
+					"thursday": [{"open": "08:00","close": "18:00"}],
+					"friday": [{"open": "08:00","close": "18:00"}],
+					"saturday": [{"open": "08:00","close": "13:00"}],"sunday": [{"open": "08:00","close": "13:00"}]
+				}
+		}
 
 		console.log(storeJSON);
 		$.post("api/store/create/",{json:JSON.stringify(storeJSON)},function(results){
@@ -347,7 +367,7 @@ $(document).ready(function() {
 
 		// REVISA AQUÍ:
 
-		var category = 1;   // Agrega aquí el número de categoría o MCC necesario para 
+		var category = 1;   // Agrega aquí el número de categoría o MCC necesario para
 							// Identificar al POS de restaurante
 
 
@@ -403,6 +423,3 @@ var items = [{
 		    "unit_price" : 125,
 		    "quantity" : 3
 		  }];
-
-
-
