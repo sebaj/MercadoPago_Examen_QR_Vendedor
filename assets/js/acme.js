@@ -367,7 +367,7 @@ $(document).ready(function() {
 
 		// REVISA AQUÍ:
 
-		var category = 1;   // Agrega aquí el número de categoría o MCC necesario para
+		var category = 621102;   // Agrega aquí el número de categoría o MCC necesario para
 							// Identificar al POS de restaurante
 
 
@@ -376,11 +376,9 @@ $(document).ready(function() {
 
 		var posJSON ={"name":posName,
 					"external_store_id":externalStoreID,
-					"fixed_amount":false,
-					"category_id":category,
+					"fixed_amount":true,
+					"category":category,
 					"external_id":externalPOSID};
-
-
 
 		$.post("api/pos/create/",{json:JSON.stringify(posJSON)},function(results){
 			console.log("Crea POS/QR:");
