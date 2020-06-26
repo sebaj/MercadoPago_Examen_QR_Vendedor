@@ -332,7 +332,7 @@ $(document).ready(function() {
 					"city_name": city,
 					"latitude": latitude,
 					"longitude": longitude,
-					"reference": "",
+					"reference": addressReference,
 					"state_name": state,
 					"street_name": streetName,
 					"street_number": streetNumber
