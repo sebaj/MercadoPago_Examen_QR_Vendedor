@@ -15,8 +15,8 @@ $external_reference = $_REQUEST["external_reference"];
  // Pista... revísalo bien...
  // Sustituye el método por su correspondiente: get, put, post, delete
 
-$url="https://api.mercadopago.com/merchant_orders";
+$url="https://api.mercadopago.com/merchant_orders/search";
 
-curl_call("get","$url/$external_reference?access_token=$access_token", "");
+curl_call("get","$url?external_reference=$external_reference&access_token=$access_token", "");
 
 ?>
