@@ -1,3 +1,9 @@
+<?php
+$fp = fopen('notifications.txt', 'w');
+fwrite($fp, "hola");
+fclose($fp);
+die();
+?>
 <!--
 
 28032356
