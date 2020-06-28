@@ -20,11 +20,26 @@ $received_json = str_replace(",}","}",file_get_contents('php://input'));
 $received_json = str_replace(",\n}","}",$received_json);
 
 $notification = json_decode($received_json,true);
-
+$var_dump($_POST["id"]);
+$var_dump($_POST["topic"]);
+die();
 $n=0;
 
-if(isset($notification['resource'])){$resource = $notification['resource'];$n=$n+1;}else{$resource= "";}
-if(isset($notification['topic'])){$topic =$notification['topic'];$n=$n+1;}else{$topic ="";}
+if(isset($notification['resource'])) {
+	$resource = $notification['resource'];
+	$n=$n+1;
+}
+else{
+	$resource= "";
+}
+
+if(isset($notification['topic'])) {
+	$topic =$notification['topic'];
+	$n=$n+1;
+}
+else{
+	$topic ="";
+}
 
 
 
@@ -50,7 +65,7 @@ if($n==2){
 
 
 }else{
-	
+
 	// Si llegase otro tipo de notificación igual responderá http 200 pero no hará nada.
 
 	header("HTTP/1.1 200 OK");
