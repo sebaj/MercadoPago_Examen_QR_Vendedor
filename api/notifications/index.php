@@ -19,12 +19,12 @@ $rootPath = $_SERVER['DOCUMENT_ROOT'];
 $received_json = str_replace(",}","}",file_get_contents('php://input'));
 $received_json = str_replace(",\n}","}",$received_json);
 
+$notification = json_decode($received_json,true);
+
 $fp = fopen('notifications.txt', 'w');
-fwrite($fp, $received_json);
+fwrite($fp, $notification['resource']);
 fclose($fp);
 return true;
-
-$notification = json_decode($received_json,true);
 
 // $notification = array(
 // 	"resource" => $_GET["id"],
