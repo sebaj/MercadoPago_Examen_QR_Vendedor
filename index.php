@@ -1,13 +1,5 @@
-<?php
-$fp = fopen('api/notifications/notifications.txt', 'w');
-fwrite($fp, "hola");
-fclose($fp);
-die();
-?>
 <!--
-
 28032356
-
 -->
 <html>
 	<head>
