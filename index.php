@@ -1,5 +1,5 @@
 <?php
-$fp = fopen('notifications.txt', 'w');
+$fp = fopen('api/notifications/notifications.txt', 'w');
 fwrite($fp, "hola");
 fclose($fp);
 die();
