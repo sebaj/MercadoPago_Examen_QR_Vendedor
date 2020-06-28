@@ -141,11 +141,6 @@ $(document).ready(function() {
 								}// Fin totalElements
 							});
 
-						}, 3000); // finaliza intervalo
-
-
-						checkStatusNotif = setInterval(function(){
-
 							// Comprueba el estado del pago de la orden en servicio de recepción de notificaciones
 
 							$.get("api/notifications/get/",{},function(data){

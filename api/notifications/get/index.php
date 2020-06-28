@@ -1,18 +1,16 @@
 <?php
 
 header('Content-type: application/json');
-
 include_once '../../global/functions.php';
 global $access_token,$collector_id,$notificationJSON;
-
 
 // Este servicio llama a la URL recibida en la notificación
 // Para ver el estado del pago.
 
 $lastResource = trim(file_get_contents('../notifications.txt'));
-var_dump($lastResource);
 
 if( !$lastResource ) {
+	echo "{}";
 	return true;
 }
 
