@@ -21,10 +21,10 @@ $received_json = str_replace(",\n}","}",$received_json);
 
 $notification = json_decode($received_json,true);
 
-$fp = fopen('notifications.txt', 'w');
-fwrite($fp, $notification['resource']);
-fclose($fp);
-return true;
+// $fp = fopen('notifications.txt', 'w');
+// fwrite($fp, $notification['resource']);
+// fclose($fp);
+// return true;
 
 // $notification = array(
 // 	"resource" => $_GET["id"],
