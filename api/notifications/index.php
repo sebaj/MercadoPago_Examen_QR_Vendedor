@@ -16,15 +16,15 @@ $rootPath = $_SERVER['DOCUMENT_ROOT'];
 
 
 // Recibe notificación:
-//$received_json = str_replace(",}","}",file_get_contents('php://input'));
-//$received_json = str_replace(",\n}","}",$received_json);
+$received_json = str_replace(",}","}",file_get_contents('php://input'));
+$received_json = str_replace(",\n}","}",$received_json);
 
-//$notification = json_decode($received_json,true);
+$notification = json_decode($received_json,true);
 
-$notification = array(
-	"resource" => $_GET["id"],
-	"topic" => $_GET["topic"]
-);
+// $notification = array(
+// 	"resource" => $_GET["id"],
+// 	"topic" => $_GET["topic"]
+// );
 
 $n=0;
 
@@ -57,13 +57,13 @@ if($n==2){
 	// seguramente deberás dar derechos al archivo notifications.txt
 	// Por ejemplo con el comando: "sudo chmod 777 notifications.txt"
 
-	$json = '{"topic": "' . $topic . '", "resource": ' . $resource . '}';
+	//$json = '{"topic": "' . $topic . '", "resource": ' . $resource . '}';
 
 	$fp = fopen('notifications.txt', 'w');
-	fwrite($fp, $json);
+	fwrite($fp, $resource);
 	fclose($fp);
 
-	echo $json;
+	echo $resource;
 
 
 }else{

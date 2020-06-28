@@ -13,6 +13,10 @@ if( !$lastResource ) {
 	echo "{}";
 	return true;
 }
+else {
+	echo $lastResource;
+	return true;
+}
 
 // REVISAR AQUÍ:
 // Agrega la $url necesaria para revisar el estado del pago en base al recurso recibido de la notificación
