@@ -12,7 +12,7 @@ global $access_token,$collector_id,$notificationJSON;
 $lastResource = file_get_contents('../notifications.txt');
 
 var_dump($lastResource);
-echo "<br";
+echo "<br>";
 die("test");
 
 $url="https://api.mercadopago.com/merchant_orders";
