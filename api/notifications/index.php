@@ -16,22 +16,15 @@ $rootPath = $_SERVER['DOCUMENT_ROOT'];
 
 
 // Recibe notificación:
-$received_json = str_replace(",}","}",file_get_contents('php://input'));
-$received_json = str_replace(",\n}","}",$received_json);
+//$received_json = str_replace(",}","}",file_get_contents('php://input'));
+//$received_json = str_replace(",\n}","}",$received_json);
 
-$notification = json_decode($received_json,true);
+//$notification = json_decode($received_json,true);
 
-var_dump( $_POST["id"] );
-var_dump( $_POST["topic"] );
-
-var_dump( $_GET["id"] );
-var_dump( $_GET["topic"] );
-
-$fp = fopen('notifications.txt', 'w');
-fwrite($fp, $received_json);
-fclose($fp);
-
-die();
+$notification = array(
+	"resource" => $_GET["id"],
+	"topic" => $_GET["topic"]
+);
 
 $n=0;
 
