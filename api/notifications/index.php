@@ -20,9 +20,11 @@ $received_json = str_replace(",}","}",file_get_contents('php://input'));
 $received_json = str_replace(",\n}","}",$received_json);
 
 $notification = json_decode($received_json,true);
-$var_dump($_POST["id"]);
-$var_dump($_POST["topic"]);
+
+var_dump( $_POST["id"] );
+var_dump( $_POST["topic"] );
 die();
+
 $n=0;
 
 if(isset($notification['resource'])) {
