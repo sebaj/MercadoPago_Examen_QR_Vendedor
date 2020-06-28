@@ -11,15 +11,13 @@ global $access_token,$collector_id,$notificationJSON;
 
 $lastResource = file_get_contents('../notifications.txt');
 
-$url="https://sjaimovich-mpago-qr.herokuapp.com/notifications";
-
-$json = $_POST["json"];
+$url="https://hookb.in/8P8lQJZgM9FBWWYjDWoQ";
 
 // REVISAR AQUÍ:
 // Agrega la $url necesaria para revisar el estado del pago en base al recurso recibido de la notificación
 
 // Sustituye el método por su correspondiente: get, put, post, delete
 
-curl_call("post","$url",$json);
+curl_call("get","$url","");
 
  ?>

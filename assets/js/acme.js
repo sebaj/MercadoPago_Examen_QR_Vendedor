@@ -75,7 +75,7 @@ $(document).ready(function() {
 					// para recibir las notificaciones en tu endpoint público.
 
 					var orderJSON ={"external_reference": external_reference,
-									"notification_url": "https://sjaimovich-mpago-qr.herokuapp.com/notifications",
+									"notification_url": "https://hookb.in/8P8lQJZgM9FBWWYjDWoQ",
 									"items" : items
 									};
 
