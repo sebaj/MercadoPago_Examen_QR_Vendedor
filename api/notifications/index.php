@@ -36,16 +36,13 @@ else{
 	$resource= "";
 }
 
-if(isset($notification['topic'])) {
+if( isset($notification['topic']) && $notification['topic'] == "merchant_order" ) {
 	$topic =$notification['topic'];
 	$n=$n+1;
 }
 else{
 	$topic ="";
 }
-
-
-
 
 if($n==2){
 	// ***********************************************
