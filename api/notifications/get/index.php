@@ -11,7 +11,11 @@ global $access_token,$collector_id,$notificationJSON;
 
 $lastResource = file_get_contents('../notifications.txt');
 
-$url="https://hookb.in/8P8lQJZgM9FBWWYjDWoQ";
+var_dump($lastResource);
+die();
+
+$url="https://api.mercadopago.com/merchant_orders";
+//https://api.mercadopago.com/merchant_orders?external_reference=ref28032356008&access_token=APP_USR-7026946692817220-061822-8b7c9e20631faac22d9e4cfa92a37265-586728271
 
 // REVISAR AQUÍ:
 // Agrega la $url necesaria para revisar el estado del pago en base al recurso recibido de la notificación
