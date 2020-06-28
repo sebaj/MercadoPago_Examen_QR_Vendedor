@@ -36,8 +36,8 @@ else{
 	$resource= "";
 }
 
-if( isset($notification['topic']) && $notification['topic'] == "merchant_order" ) {
-	$topic =$notification['topic'];
+if( isset($notification['topic']) ) {
+	$topic = $notification['topic'];
 	$n=$n+1;
 }
 else{
@@ -57,11 +57,13 @@ if($n==2){
 	// seguramente deberás dar derechos al archivo notifications.txt
 	// Por ejemplo con el comando: "sudo chmod 777 notifications.txt"
 
+	$json = '{"topic": "' . $topic . '", "resource": ' . $resource . '}';
+
 	$fp = fopen('notifications.txt', 'w');
-	fwrite($fp, $resource);
+	fwrite($fp, $json);
 	fclose($fp);
 
-	echo $resource;
+	echo $json;
 
 
 }else{

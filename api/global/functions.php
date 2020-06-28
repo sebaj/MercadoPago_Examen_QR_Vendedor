@@ -22,7 +22,7 @@ global $access_token,$collector_id,$notificationJSON,$country_id;
 // En el caso que no aplique enviar JSON poner ""
 
 
-function curl_call($method,$url,$json){
+function curl_call($method,$url,$json,$return_transfer=false){
 	$integrator_id_test="";
 	$method = strtoupper($method);
 	$headers = array("Content-Type: application/json","X-integrator-id: $integrator_id_test");
@@ -34,6 +34,7 @@ function curl_call($method,$url,$json){
         CURLOPT_POST => $post,
         CURLOPT_HTTPHEADER => $headers,
         CURLOPT_POSTFIELDS => $json,
+		CURLOPT_RETURNTRANSFER => $return_transfer,
     );
 
     curl_setopt_array($ch, $options);
