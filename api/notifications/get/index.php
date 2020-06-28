@@ -10,6 +10,7 @@ global $access_token,$collector_id,$notificationJSON;
 // Para ver el estado del pago.
 
 $lastResource = trim(file_get_contents('../notifications.txt'));
+var_dump($lastResource);
 
 if( !$lastResource ) {
 	return true;
