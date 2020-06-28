@@ -130,7 +130,7 @@ $(document).ready(function() {
 									if(orderStatus=="closed"){
 										if(cashSound){playSound("cash")};
 										cashSound=false;
-										setTimeout(clearInterval(checkStatus),3000);
+										setTimeout(clearInterval(checkStatusNotif),3000);
 
 										$('#orderFinalStatus').text(elements[totalElements-1]);
 										$('#exampleModal').modal("hide");
@@ -141,6 +141,10 @@ $(document).ready(function() {
 								}// Fin totalElements
 							});
 
+						}, 3000); // finaliza intervalo
+
+
+						checkStatusNotif = setInterval(function(){
 
 							// Comprueba el estado del pago de la orden en servicio de recepción de notificaciones
 
@@ -174,8 +178,6 @@ $(document).ready(function() {
 
 								}
 							});
-
-
 
 						}, 3000); // finaliza intervalo
 
